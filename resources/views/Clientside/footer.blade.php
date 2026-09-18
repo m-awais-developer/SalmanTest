@@ -55,12 +55,12 @@
                     Popular Links
                 </h4>
                 <div class="d-flex flex-column justify-content-start">
-                    <a class="text-light mb-2" href="#!"><i class="fa fa-angle-right me-2"></i>Home</a>
-                    <a class="text-light mb-2" href="#!"><i class="fa fa-angle-right me-2"></i>About Us</a>
-                    <a class="text-light mb-2" href="#!"><i class="fa fa-angle-right me-2"></i>Our Services</a>
-                    <a class="text-light mb-2" href="#!"><i class="fa fa-angle-right me-2"></i>Meet The Team</a>
-                    <a class="text-light mb-2" href="#!"><i class="fa fa-angle-right me-2"></i>Latest Blog</a>
-                    <a class="text-light" href="#!"><i class="fa fa-angle-right me-2"></i>Contact Us</a>
+                    <a class="text-light mb-2" href="{{route('home')}}"><i class="fa fa-angle-right me-2"></i>Home</a>
+                    <a class="text-light mb-2" href="{{route('about')}}"><i class="fa fa-angle-right me-2"></i>About Us</a>
+                    <a class="text-light mb-2" href="{{route('services')}}"><i class="fa fa-angle-right me-2"></i>Our Services</a>
+                    <a class="text-light mb-2" href="{{route('home')}}"><i class="fa fa-angle-right me-2"></i>Meet The Team</a>
+                    <a class="text-light mb-2" href="{{route('blog')}}"><i class="fa fa-angle-right me-2"></i>Latest Blogs</a>
+                    <a class="text-light" href="{{route('contact')}}"><i class="fa fa-angle-right me-2"></i>Contact Us</a>
                 </div>
             </div>
 

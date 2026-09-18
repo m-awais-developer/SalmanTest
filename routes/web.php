@@ -41,9 +41,36 @@ Route::get('/blog-detail/{id}', [ClientController::class, 'blogDetail'])
 
 /*
 |--------------------------------------------------------------------------
+| Login
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/login', [ClientController::class, 'showLogin'])
+    ->name('login');
+
+Route::post('/login', [ClientController::class, 'login'])
+    ->name('login.submit');
+
+
+/*
+|--------------------------------------------------------------------------
+| Logout
+|--------------------------------------------------------------------------
+*/
+
+Route::post('/logout', [ClientController::class, 'logout'])
+    ->name('logout');
+
+
+
+/*
+|--------------------------------------------------------------------------
 | Admin Side Routes
 |--------------------------------------------------------------------------
 */
+
+Route::middleware('auth')->group(function () {
+
 
 Route::get('/dashboard', [AdminController::class, 'dashboard'])
     ->name('dashboard.home');
@@ -121,3 +148,4 @@ Route::post('/admin/website-settings/save', [AdminController::class, 'savesettin
 Route::get('/admin/contacts', [AdminController::class, 'contactslist'])
     ->name('admin.contacts');
 
+});

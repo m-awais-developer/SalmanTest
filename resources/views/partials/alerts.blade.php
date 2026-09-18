@@ -29,9 +29,6 @@
         <div class="d-flex align-items-center mb-2">
             <i class="fa-solid fa-circle-xmark text-danger me-2.5 fs-5"></i>
 
-            <strong class="text-danger-emphasis">
-                Please fix the following validation errors:
-            </strong>
         </div>
 
         <ul class="mb-0 text-danger ps-4 small">

@@ -717,15 +717,18 @@
 
                 </a>
 
+<form action="{{ route('logout') }}" method="POST" class="m-0">
+    @csrf
 
-                <a href="#" class="nav-link text-danger">
+    <button type="submit"
+            class="nav-link text-danger border-0 bg-transparent w-100 text-start">
 
-                    <i class="bi bi-box-arrow-right"></i>
+        <i class="bi bi-box-arrow-right"></i>
 
-                    Logout
+        Logout
 
-                </a>
-
+    </button>
+</form>
             </nav>
 
         </aside>

@@ -461,30 +461,8 @@
 
         <div class="settings-card">
 
+  @include('partials.alerts')
 
-            <!-- SUCCESS -->
-
-            @if(session('success'))
-
-                <div class="success-message">
-                    ✓ {{ session('success') }}
-                </div>
-
-            @endif
-
-
-            <!-- ERRORS -->
-
-            @if($errors->any())
-
-                <div class="success-message"
-                     style="background:#fef2f2;color:#b91c1c;border-color:#fecaca;">
-
-                    Please check the form and try again.
-
-                </div>
-
-            @endif
 
 
 

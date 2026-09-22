@@ -52,33 +52,41 @@
         }
 
         /* LEFT SIDE */
+.login-left {
+    width: 50%;
+    padding: 65px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    /* FIX: Separated background color and box shadow */
+    background-color: #ffffff; 
+    box-shadow: 5px 0 20px rgba(0, 0, 0, .15); 
+    
+    color: #ffffff; /* Note: White text on a white background (#ffffff) will be invisible! */
+    position: relative;
+    overflow: hidden;
+}
 
-        .login-left {
-            width: 50%;
-            padding: 65px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            background: linear-gradient(
-                145deg,
-                #0d6efd,
-                #084298
-            );
-            color: #ffffff;
-            position: relative;
-            overflow: hidden;
-        }
 
-        .login-left::before {
-            content: "";
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.08);
-            top: -100px;
-            right: -100px;
-        }
+       /* LEFT SIDE */
+.login-left {
+    width: 50%;
+    padding: 65px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    /* Solid background color (Choose a dark color like #2c3e50 so white text shows up) */
+    background-color: #2c3e50; 
+    
+    /* This creates the inner shadow on the left side and bottom side */
+    box-shadow: inset 5px -5px 20px rgba(0, 0, 0, .15); 
+    
+    color: #ffffff; /* White text is perfectly readable now */
+    position: relative;
+    overflow: hidden;
+}
 
         .login-left::after {
             content: "";
@@ -160,7 +168,7 @@
             margin-bottom: 8px;
             font-size: 32px;
             font-weight: 700;
-            color: #172033;
+            color:  #2c3e50; 
         }
 
         .login-subtitle {
@@ -211,24 +219,31 @@
             border-right: 1px solid #dfe5ec;
         }
 
-        .login-btn {
-            width: 100%;
-            height: 55px;
-            border: none;
-            border-radius: 12px;
-            background: #0d6efd;
-            color: #ffffff;
-            font-size: 16px;
-            font-weight: 600;
-            transition: 0.25s ease;
-            box-shadow: 0 8px 20px rgba(13, 110, 253, 0.22);
-        }
+       .login-btn {
+    width: 100%;
+    height: 55px;
+    border: none;
+    border-radius: 12px;
+    
+    /* Matches the dark slate color of the left side panel */
+    background: #2c3e50; 
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    transition: 0.25s ease;
+    
+    /* Subtle bottom shadow using your preferred alpha opacity */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); 
+}
 
-        .login-btn:hover {
-            background: #0b5ed7;
-            transform: translateY(-1px);
-            box-shadow: 0 12px 25px rgba(13, 110, 253, 0.28);
-        }
+.login-btn:hover {
+    /* Slightly lighter shade for interactive hover state */
+    background: #34495e; 
+    transform: translateY(-1px);
+    
+    /* Slightly deeper shadow on hover */
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2); 
+}
 
         .alert {
             border-radius: 12px;

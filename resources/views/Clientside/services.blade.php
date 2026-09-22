@@ -4,7 +4,7 @@
 
 @section('content')
 
-{{--  
+{{--
 |--------------------------------------------------------------------------
 | Services
 |--------------------------------------------------------------------------
@@ -129,7 +129,7 @@
 </section>
 
 
-{{--  
+{{--
 |--------------------------------------------------------------------------
 | Appointment
 |--------------------------------------------------------------------------
@@ -341,7 +341,7 @@
 </section>
 
 
-{{--  
+{{--
 |--------------------------------------------------------------------------
 | Testimonials
 |--------------------------------------------------------------------------
@@ -433,7 +433,7 @@
 </section>
 
 
-{{--  
+{{--
 |--------------------------------------------------------------------------
 | Service Card CSS
 |--------------------------------------------------------------------------
@@ -452,18 +452,7 @@
     flex-direction: column;
     position: relative;
 
-    /* Smooth card movement */
     transition: transform 0.35s ease, box-shadow 0.35s ease;
-}
-
-
-/* Slight lift when mouse enters card */
-
-.service-card:hover {
-    transform: translateY(-5px);
-
-    box-shadow:
-        0 15px 35px rgba(0, 0, 0, 0.12) !important;
 }
 
 
@@ -481,13 +470,6 @@
 }
 
 
-/* Slight image zoom */
-
-.service-card:hover .service-card-image {
-    transform: scale(1.03);
-}
-
-
 /* =========================================================
    SERVICE CONTENT
 ========================================================= */
@@ -495,7 +477,7 @@
 .service-content {
     position: relative;
 
-    height: 270px;
+    min-height: 270px;
 
     padding: 24px;
 
@@ -534,14 +516,22 @@
 
     line-height: 1.6;
 
-    /* Keep description from covering button */
+    /* Keep description clear of the button */
     padding-bottom: 50px;
+
+    /* Trim very long text instead of letting it overflow */
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 
 /* =========================================================
    BUTTON AREA
-   HIDDEN BY DEFAULT
+   Default state = VISIBLE.
+   This is what touch devices (phones, tablets) get,
+   because they have no mouse hover.
 ========================================================= */
 
 .service-button-area {
@@ -550,7 +540,7 @@
     left: 0;
     right: 0;
 
-    bottom: -70px;
+    bottom: 24px;
 
     width: 100%;
 
@@ -562,37 +552,67 @@
 
     text-align: center;
 
-    opacity: 0;
-
-    transform: translateY(25px);
-
-    /*
-       Smooth upward animation
-    */
-    transition:
-        bottom 0.45s cubic-bezier(0.22, 1, 0.36, 1),
-        opacity 0.3s ease,
-        transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
-
-    pointer-events: none;
-
-    z-index: 20;
-}
-
-
-/* =========================================================
-   SHOW BUTTON WHEN MOUSE ENTERS CARD
-========================================================= */
-
-.service-card:hover .service-button-area {
-
-    bottom: 24px;
-
     opacity: 1;
 
     transform: translateY(0);
 
     pointer-events: auto;
+
+    z-index: 20;
+
+    transition:
+        bottom 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 0.3s ease,
+        transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+/* =========================================================
+   MOUSE DEVICES ONLY
+   Laptops / desktops with a real pointer get the
+   hide-then-slide-up-on-hover behaviour.
+   Touch devices never match this block, so the button
+   simply stays visible there — no tap required.
+========================================================= */
+
+@media (hover: hover) and (pointer: fine) {
+
+    /* Card lift */
+    .service-card:hover {
+        transform: translateY(-5px);
+
+        box-shadow:
+            0 15px 35px rgba(0, 0, 0, 0.12) !important;
+    }
+
+    /* Image zoom */
+    .service-card:hover .service-card-image {
+        transform: scale(1.03);
+    }
+
+    /* Button hidden below the card */
+    .service-button-area {
+        bottom: -70px;
+
+        opacity: 0;
+
+        transform: translateY(25px);
+
+        pointer-events: none;
+    }
+
+    /* Button slides up when the mouse enters the card */
+    .service-card:hover .service-button-area,
+    .service-card:focus-within .service-button-area {
+        bottom: 24px;
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+        pointer-events: auto;
+    }
+
 }
 
 
@@ -648,20 +668,12 @@
 }
 
 
-/* =========================================================
-   BUTTON TEXT
-========================================================= */
-
 .learn-more-btn span {
     display: inline-block;
 
     white-space: nowrap;
 }
 
-
-/* =========================================================
-   BUTTON ICON
-========================================================= */
 
 .learn-more-btn i {
     display: inline-block;
@@ -676,11 +688,8 @@
 }
 
 
-/* =========================================================
-   BUTTON HOVER
-========================================================= */
-
-.learn-more-btn:hover {
+.learn-more-btn:hover,
+.learn-more-btn:focus {
 
     color: #ffffff !important;
 
@@ -695,59 +704,27 @@
 }
 
 
-/* Arrow moves slightly */
-
 .learn-more-btn:hover i {
     transform: translateX(5px);
 }
 
 
 /* =========================================================
-   MOBILE
-   On touch devices there is no mouse hover,
-   so keep the button visible.
+   REDUCED MOTION
 ========================================================= */
 
-@media (max-width: 767px) {
+@media (prefers-reduced-motion: reduce) {
 
-    .service-button-area {
-
-        position: static;
-
-        margin-top: auto;
-
-        padding-top: 18px;
-
-        opacity: 1;
-
-        transform: none;
-
-        pointer-events: auto;
-
-        transition: none;
-    }
-
-
-    .service-card:hover {
-
-        transform: none;
-    }
-
-
-    .service-card:hover .service-card-image {
-
-        transform: none;
-    }
-
-
-    .service-content {
-
-        height: 270px;
+    .service-card,
+    .service-card-image,
+    .service-button-area,
+    .learn-more-btn,
+    .learn-more-btn i {
+        transition: transform 0.3s ease !important;
     }
 
 }
 
 </style>
-
 
 @endsection

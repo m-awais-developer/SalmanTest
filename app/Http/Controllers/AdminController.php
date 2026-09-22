@@ -376,5 +376,24 @@ public function deleteservice($id)
 
     return view('Adminside.contactslist', compact('contacts'));
 }
+
+
+
+
+public function deletecontacts($id) 
+{
+    $contact = Contacts::find($id);
+
+    if (!$contact) {
+        return back()->with('error', 'Contact not found.');
+    }
+
+    $contact->delete();
+
+    return back()->with('success', 'Your message has been deleted successfully.');
 }
+}
+
+
+
 

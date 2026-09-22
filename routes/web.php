@@ -149,3 +149,12 @@ Route::get('/admin/contacts', [AdminController::class, 'contactslist'])
     ->name('admin.contacts');
 
 });
+
+/*
+|--------------------------------------------------------------------------
+| Contact list delete route
+|--------------------------------------------------------------------------
+*/
+
+Route::delete('/admin/contacts/{id}/delete', [AdminController::class, 'deletecontacts'])
+    ->name('admin.contacts.delete');

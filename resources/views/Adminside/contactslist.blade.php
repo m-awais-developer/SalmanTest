@@ -34,7 +34,8 @@
     .contact-table th:nth-child(5), .contact-table td:nth-child(5) { width: 320px; } 
     .contact-table th:nth-child(6), .contact-table td:nth-child(6) { width: 190px; } 
     .contact-table th:nth-child(7), .contact-table td:nth-child(7) { width: 190px; } 
-    
+    .contact-table th:nth-child(8), .contact-table td:nth-child(8) { width: 190px; } 
+
     /* FIX FOR VISIBILITY: Forces text blocks to drop wrap line levels cleanly */
     .message-cell, .name-cell, .email-cell { 
         white-space: normal !important; 
@@ -83,6 +84,7 @@
                         <th>Message</th> 
                         <th>Created At</th> 
                         <th>Updated At</th> 
+                        <th>Action</th> 
                     </tr> 
                 </thead> 
                 <tbody> 
@@ -94,7 +96,28 @@
                         <td> {{ $contact->subject }} </td> 
                         <td class="message-cell"> {{ $contact->message }} </td> 
                         <td> <small class="text-muted"> {{ $contact->created_at?->format('d M Y, h:i A') }} </small> </td> 
-                        <td> <small class="text-muted"> {{ $contact->updated_at?->format('d M Y, h:i A') }} </small> </td> 
+                        <td> <small class="text-muted"> {{ $contact->updated_at?->format('d M Y, h:i A') }} </small> </td>
+                        <td>
+                         <form
+                                action="{{ route('admin.contacts.delete', $contact->id) }}"
+                                method="POST"
+                                onsubmit="return confirm('Are you sure you want to delete this contact?');">
+
+                                @csrf
+
+                                @method('DELETE')
+
+                                <button
+                                    type="submit"
+                                    class="btn btn-outline-danger">
+
+                                    <i class="fa-solid fa-trash"></i>
+
+                                    Delete
+
+                                </button>
+
+</td>
                     </tr> 
                     @empty 
                     <tr> 

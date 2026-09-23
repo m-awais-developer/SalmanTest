@@ -76,6 +76,290 @@
         body > main > *:last-child {
             margin-bottom: 0;
         }
+        /* =========================================================
+   SERVICE CARD
+========================================================= */
+
+.service-card {
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+
+/* =========================================================
+   SERVICE IMAGE
+========================================================= */
+
+.service-card-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+
+    transition: transform 0.5s ease;
+}
+
+
+/* =========================================================
+   SERVICE CONTENT
+========================================================= */
+
+.service-content {
+    position: relative;
+
+    min-height: 270px;
+
+    padding: 24px;
+
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.service-title {
+    margin: 0 0 12px 0;
+
+    color: #212529;
+
+    font-weight: 700;
+
+    line-height: 1.3;
+}
+
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.service-description {
+    margin: 0;
+
+    color: #6c757d;
+
+    line-height: 1.6;
+
+    /* Keep description clear of the button */
+    padding-bottom: 50px;
+
+    /* Trim very long text instead of letting it overflow */
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   BUTTON AREA
+   Default state = VISIBLE.
+   This is what touch devices (phones, tablets) get,
+   because they have no mouse hover.
+========================================================= */
+
+.service-button-area {
+    position: absolute;
+
+    left: 0;
+    right: 0;
+
+    bottom: 24px;
+
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    opacity: 1;
+
+    transform: translateY(0);
+
+    pointer-events: auto;
+
+    z-index: 20;
+
+    transition:
+        bottom 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 0.3s ease,
+        transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+/* =========================================================
+   MOUSE DEVICES ONLY
+   Laptops / desktops with a real pointer get the
+   hide-then-slide-up-on-hover behaviour.
+   Touch devices never match this block, so the button
+   simply stays visible there — no tap required.
+========================================================= */
+
+@media (hover: hover) and (pointer: fine) {
+
+    /* Card lift */
+    .service-card:hover {
+        transform: translateY(-5px);
+
+        box-shadow:
+            0 15px 35px rgba(0, 0, 0, 0.12) !important;
+    }
+
+    /* Image zoom */
+    .service-card:hover .service-card-image {
+        transform: scale(1.03);
+    }
+
+    /* Button hidden below the card */
+    .service-button-area {
+        bottom: -70px;
+
+        opacity: 0;
+
+        transform: translateY(25px);
+
+        pointer-events: none;
+    }
+
+    /* Button slides up when the mouse enters the card */
+    .service-card:hover .service-button-area,
+    .service-card:focus-within .service-button-area {
+        bottom: 24px;
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+        pointer-events: auto;
+    }
+
+}
+
+
+/* =========================================================
+   LEARN MORE BUTTON
+========================================================= */
+
+.learn-more-btn {
+
+    width: 140px;
+
+    height: 45px;
+
+    padding: 0;
+
+    display: inline-flex !important;
+
+    align-items: center !important;
+
+    justify-content: center !important;
+
+    gap: 7px;
+
+    background-color: #13c5dd;
+
+    color: #ffffff !important;
+
+    border: none;
+
+    border-radius: 50px;
+
+    text-decoration: none !important;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    line-height: 1;
+
+    box-sizing: border-box;
+
+    position: relative;
+
+    z-index: 10;
+
+    box-shadow:
+        0 7px 18px rgba(19, 197, 221, 0.25);
+
+    transition:
+        background-color 0.3s ease,
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+.learn-more-btn span {
+    display: inline-block;
+
+    white-space: nowrap;
+}
+
+
+.learn-more-btn i {
+    display: inline-block;
+
+    font-size: 15px;
+
+    line-height: 1;
+
+    flex-shrink: 0;
+
+    transition: transform 0.3s ease;
+}
+
+
+.learn-more-btn:hover,
+.learn-more-btn:focus {
+
+    color: #ffffff !important;
+
+    text-decoration: none !important;
+
+    background-color: #0fb1c8;
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 10px 22px rgba(19, 197, 221, 0.35);
+}
+
+
+.learn-more-btn:hover i {
+    transform: translateX(5px);
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .service-card,
+    .service-card-image,
+    .service-button-area,
+    .learn-more-btn,
+    .learn-more-btn i {
+        transition: transform 0.3s ease !important;
+    }
+
+}
+
 
     </style>
 

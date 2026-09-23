@@ -90,105 +90,125 @@
 |--------------------------------------------------------------------------
 --}}
 
-<div class="container-fluid py-5">
+ 
+<section class="container-fluid py-5">
+
     <div class="container">
-        <div class="text-center mx-auto mb-5" style="max-width: 500px;">
-            <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5">Services</h5>
-            <h1 class="display-4">Excellent Medical Services</h1>
+
+        <div class="text-center mx-auto mb-5" style="max-width: 600px;">
+
+            <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5">
+                Our Services
+            </h5>
+
+            <h1 class="display-4">
+                Excellent Medical Services
+            </h1>
+
+            <p class="text-muted mt-3 mb-0">
+                We provide quality healthcare services with professional care
+                and modern medical facilities.
+            </p>
+
         </div>
-        <div class="row g-5">
-            <div class="col-lg-4 col-md-6">
-                <div
-                    class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
-                    <div class="service-icon mb-4">
-                        <i class="fa fa-2x fa-user-md text-white"></i>
-                    </div>
-                    <h4 class="mb-3">Emergency Care</h4>
-                    <p class="m-0">Kasd dolor no lorem nonumy sit labore tempor at justo rebum rebum stet, justo
-                        elitr dolor amet sit</p>
-                    <a class="btn btn-lg btn-primary rounded-pill" href="#!">
-                        <i class="bi bi-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
 
-            <div class="col-lg-4 col-md-6">
-                <div
-                    class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
-                    <div class="service-icon mb-4">
-                        <i class="fa fa-2x fa-procedures text-white"></i>
-                    </div>
-                    <h4 class="mb-3">Operation & Surgery</h4>
-                    <p class="m-0">Kasd dolor no lorem nonumy sit labore tempor at justo rebum rebum stet, justo
-                        elitr dolor amet sit</p>
-                    <a class="btn btn-lg btn-primary rounded-pill" href="#!">
-                        <i class="bi bi-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
 
-            <div class="col-lg-4 col-md-6">
-                <div
-                    class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
-                    <div class="service-icon mb-4">
-                        <i class="fa fa-2x fa-stethoscope text-white"></i>
-                    </div>
-                    <h4 class="mb-3">Outdoor Checkup</h4>
-                    <p class="m-0">Kasd dolor no lorem nonumy sit labore tempor at justo rebum rebum stet, justo
-                        elitr dolor amet sit</p>
-                    <a class="btn btn-lg btn-primary rounded-pill" href="#!">
-                        <i class="bi bi-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
+        <div class="row g-4">
 
-            <div class="col-lg-4 col-md-6">
-                <div
-                    class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
-                    <div class="service-icon mb-4">
-                        <i class="fa fa-2x fa-ambulance text-white"></i>
-                    </div>
-                    <h4 class="mb-3">Ambulance Service</h4>
-                    <p class="m-0">Kasd dolor no lorem nonumy sit labore tempor at justo rebum rebum stet, justo
-                        elitr dolor amet sit</p>
-                    <a class="btn btn-lg btn-primary rounded-pill" href="#!">
-                        <i class="bi bi-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
+            @forelse($service as $service)
 
-            <div class="col-lg-4 col-md-6">
-                <div
-                    class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
-                    <div class="service-icon mb-4">
-                        <i class="fa fa-2x fa-pills text-white"></i>
-                    </div>
-                    <h4 class="mb-3">Medicine & Pharmacy</h4>
-                    <p class="m-0">Kasd dolor no lorem nonumy sit labore tempor at justo rebum rebum stet, justo
-                        elitr dolor amet sit</p>
-                    <a class="btn btn-lg btn-primary rounded-pill" href="#!">
-                        <i class="bi bi-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
+                <div class="col-lg-4 col-md-6">
 
-            <div class="col-lg-4 col-md-6">
-                <div
-                    class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
-                    <div class="service-icon mb-4">
-                        <i class="fa fa-2x fa-microscope text-white"></i>
+                    {{-- SERVICE CARD --}}
+                    <div class="service-item bg-light rounded shadow-sm service-card">
+
+                        {{-- IMAGE --}}
+                        <div class="service-image">
+
+                            @if($service->image)
+
+                                <img
+                                    src="{{ asset('storage/services/' . $service->image) }}"
+                                    class="img-fluid w-100 service-card-image"
+                                    alt="{{ $service->title }}"
+                                >
+
+                            @else
+
+                                <img
+                                    src="{{ asset('img/service-1.jpg') }}"
+                                    class="img-fluid w-100 service-card-image"
+                                    alt="{{ $service->title }}"
+                                >
+
+                            @endif
+
+                        </div>
+
+
+                        {{-- CONTENT --}}
+                        <div class="service-content">
+
+                            {{-- TITLE --}}
+                            <h4 class="service-title">
+                                {{ $service->title }}
+                            </h4>
+
+
+                            {{-- DESCRIPTION --}}
+                            <p class="service-description">
+                                {{ $service->description }}
+                            </p>
+
+
+                            {{-- BUTTON --}}
+                            <div class="service-button-area">
+
+                                <a
+                                    href="{{ route('service.detail', $service->id) }}"
+                                    class="learn-more-btn"
+                                >
+                                    <span>Learn More</span>
+                                    <i class="bi bi-arrow-right"></i>
+                                </a>
+
+                            </div>
+
+                        </div>
+
                     </div>
-                    <h4 class="mb-3">Blood Testing</h4>
-                    <p class="m-0">Kasd dolor no lorem nonumy sit labore tempor at justo rebum rebum stet, justo
-                        elitr dolor amet sit</p>
-                    <a class="btn btn-lg btn-primary rounded-pill" href="#!">
-                        <i class="bi bi-arrow-right"></i>
-                    </a>
+
                 </div>
-            </div>
+
+
+            @empty
+
+                <div class="col-12">
+
+                    <div class="text-center py-5">
+
+                        <i class="fa-regular fa-folder-open display-5 text-muted mb-3"></i>
+
+                        <h5 class="text-dark">
+                            No Medical Services Registered Yet
+                        </h5>
+
+                        <p class="text-secondary mb-0">
+                            Please add service items through the dashboard panel.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            @endforelse
+
         </div>
+
     </div>
-</div>
+
+</section>
+
 
 
 {{--
@@ -608,87 +628,125 @@
 
 <div class="container-fluid py-5">
     <div class="container">
+
+        <!-- HEADER -->
         <div class="text-center mx-auto mb-5" style="max-width: 500px;">
-            <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5">Blog Post</h5>
-            <h1 class="display-4">Our Latest Medical Blog Posts</h1>
+            <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5">
+                Blog Post
+            </h5>
+            <h1 class="display-4">
+                Our Latest Medical Blog Posts
+            </h1>
         </div>
 
-        <div class="row g-5">
+        <!-- BLOG GRID -->
+        <div class="row g-4"> <!-- Gap g-5 se g-4 kar diya taake space mil sake -->
 
-            <div class="col-xl-4 col-lg-6">
-                <div class="bg-light rounded overflow-hidden">
-                    <img class="img-fluid w-100" src="img/blog-1.jpg" alt="">
+            @forelse($blogs as $blog)
 
-                    <div class="p-4">
-                        <a class="h3 d-block mb-3" href="#!">Dolor clita vero elitr sea stet dolor justo diam</a>
-                        <p class="m-0">Dolor lorem eos dolor duo et eirmod sea. Dolor sit magna
-                            rebum clita rebum dolor stet amet justo</p>
-                    </div>
+                <!-- Ek row mein 3 cards dikhane ke liye col-md-4 lagaya hai -->
+                <div class="col-xl-4 col-lg-4 col-md-6 col-12 d-flex align-items-stretch">
 
-                    <div class="d-flex justify-content-between border-top p-4">
-                        <div class="d-flex align-items-center">
-                            <img class="rounded-circle me-2" src="img/user.jpg" width="25" height="25" alt="">
-                            <small>John Doe</small>
+                    <!-- BLOG CARD -->
+                    <div class="blog-card bg-light rounded overflow-hidden shadow-sm w-100 d-flex flex-column">
+
+                        <!-- IMAGE -->
+                        <div class="blog-image-wrapper">
+                            @if($blog->image)
+                                <img
+                                    class="img-fluid w-100 blog-card-image"
+                                    src="{{ asset('uploads/blogs/' . $blog->image) }}"
+                                    alt="{{ $blog->title }}"
+                                    style="height: 220px; object-fit: cover;"
+                                >
+                            @else
+                                <img
+                                    class="img-fluid w-100 blog-card-image"
+                                    src="{{ asset('img/blog-1.jpg') }}"
+                                    alt="Default Image"
+                                    style="height: 220px; object-fit: cover;"
+                                >
+                            @endif
                         </div>
 
-                        <div class="d-flex align-items-center">
-                            <small class="ms-3"><i class="far fa-eye text-primary me-1"></i>12345</small>
-                            <small class="ms-3"><i class="far fa-comment text-primary me-1"></i>123</small>
+                        <!-- CONTENT -->
+                        <div class="blog-content p-4 flex-grow-1 d-flex flex-column justify-content-between">
+                            <div>
+                                <!-- TITLE -->
+                                <h3 class="blog-title fs-5 fw-bold mb-2">
+                                    {{ $blog->title }}
+                                </h3>
+
+                                <!-- DESCRIPTION -->
+                                <p class="blog-description text-muted small mb-3">
+                                    {{ Str::limit($blog->description, 110, '...') }}
+                                </p>
+                            </div>
+
+                            <!-- LEARN MORE BUTTON -->
+                            <div class="blog-button-area mt-3">
+                                <a href="{{ route('blog.detail', $blog->id) }}" class="blog-learn-more btn btn-link p-0 text-primary text-decoration-none">
+                                    <span>Learn More</span>
+                                    <i class="bi bi-arrow-right ms-1"></i>
+                                </a>
+                            </div>
                         </div>
-                    </div>
+
+                        <!-- FOOTER (Ab yeh card ke andar hi rahega) -->
+                        <div class="d-flex justify-content-between border-top p-4 bg-white mt-auto">
+                            <div class="d-flex align-items-center">
+                                <img
+                                    class="rounded-circle me-2"
+                                    src="{{ asset('img/user.jpg') }}"
+                                    width="25"
+                                    height="25"
+                                    alt="Admin"
+                                >
+                                <small class="text-dark fw-medium">
+                                    Admin
+                                </small>
+                            </div>
+
+                            <div class="d-flex align-items-center text-muted">
+                                <small class="ms-3">
+                                    <i class="far fa-eye text-primary me-1"></i> 0
+                                </small>
+                                <small class="ms-3">
+                                    <i class="far fa-comment text-primary me-1"></i> 0
+                                </small>
+                            </div>
+                        </div>
+
+                    </div> <!-- CARD END -->
+
+                </div> <!-- COLUMN END -->
+
+            @empty
+
+                <!-- EMPTY STATE -->
+                <div class="col-12 text-center py-5">
+                    <i class="bi bi-journal-x text-muted display-1 d-block mb-3"></i>
+                    <p class="text-muted fs-5">
+                        No blog posts available at the moment.
+                    </p>
                 </div>
-            </div>
 
-            <div class="col-xl-4 col-lg-6">
-                <div class="bg-light rounded overflow-hidden">
-                    <img class="img-fluid w-100" src="img/blog-2.jpg" alt="">
+            @endforelse
 
-                    <div class="p-4">
-                        <a class="h3 d-block mb-3" href="#!">Dolor clita vero elitr sea stet dolor justo diam</a>
-                        <p class="m-0">Dolor lorem eos dolor duo et eirmod sea. Dolor sit magna
-                            rebum clita rebum dolor stet amet justo</p>
-                    </div>
-
-                    <div class="d-flex justify-content-between border-top p-4">
-                        <div class="d-flex align-items-center">
-                            <img class="rounded-circle me-2" src="img/user.jpg" width="25" height="25" alt="">
-                            <small>John Doe</small>
-                        </div>
-
-                        <div class="d-flex align-items-center">
-                            <small class="ms-3"><i class="far fa-eye text-primary me-1"></i>12345</small>
-                            <small class="ms-3"><i class="far fa-comment text-primary me-1"></i>123</small>
-                        </div>
-                    </div>
+            <!-- LOAD MORE BUTTON -->
+            @if($blogs->count() > 0)
+                <div class="col-12 text-center mt-5">
+                    <button class="btn btn-primary py-3 px-5 rounded-pill shadow-sm">
+                        Load More Articles
+                    </button>
                 </div>
-            </div>
-
-            <div class="col-xl-4 col-lg-6">
-                <div class="bg-light rounded overflow-hidden">
-                    <img class="img-fluid w-100" src="img/blog-3.jpg" alt="">
-
-                    <div class="p-4">
-                        <a class="h3 d-block mb-3" href="#!">Dolor clita vero elitr sea stet dolor justo diam</a>
-                        <p class="m-0">Dolor lorem eos dolor duo et eirmod sea. Dolor sit magna
-                            rebum clita rebum dolor stet amet justo</p>
-                    </div>
-
-                    <div class="d-flex justify-content-between border-top p-4">
-                        <div class="d-flex align-items-center">
-                            <img class="rounded-circle me-2" src="img/user.jpg" width="25" height="25" alt="">
-                            <small>John Doe</small>
-                        </div>
-
-                        <div class="d-flex align-items-center">
-                            <small class="ms-3"><i class="far fa-eye text-primary me-1"></i>12345</small>
-                            <small class="ms-3"><i class="far fa-comment text-primary me-1"></i>123</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endif
 
         </div>
+
     </div>
 </div>
+
+
 
 @endsection

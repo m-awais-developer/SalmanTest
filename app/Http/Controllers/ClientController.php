@@ -18,7 +18,12 @@ class ClientController extends Controller
      // 1. Home / Welcome Page
     public function showHome()
     {
-        return view('Clientside.welcome');
+
+    $service = \App\Models\Service::all();
+
+     $blogs = \App\Models\Blog::all();
+
+    return view('Clientside.welcome', compact('service', 'blogs'));
     }
 
     // 2. About Page
